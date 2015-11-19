@@ -2,7 +2,7 @@
 
 $(document).ready(function() {
     var game = new Game();
-    var solver = new Solver(game);
+    var solver = new Solver(game, $(".game"));
 
     $(".start-button").click(function() {
         $(".menu-screen").hide();

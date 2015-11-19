@@ -4,6 +4,7 @@ class Solver {
     constructor(game, gameDiv) {
         this.game = game;
         this.gameDiv = gameDiv;
+        this.renderState();
     }
 
     solve() {
@@ -25,7 +26,48 @@ class Solver {
         return stateScore;
     }
 
-    renderBoard() {
+    renderState() {
+        // Render next
+        let nextElement = $(this.gameDiv).find(".game-next-icon")[0];
 
+        $(nextElement).removeClass("next-icon-blue");
+        $(nextElement).removeClass("next-icon-red");
+        $(nextElement).removeClass("next-icon-white");
+
+        if (this.game.next == 1) {
+            $(nextElement).addClass("next-icon-blue");
+        } else if (this.game.next == 2) {
+            $(nextElement).addClass("next-icon-red");
+        } else {
+            $(nextElement).addClass("next-icon-white");
+        }
+
+        // Render tiles
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 4; j++) {
+                let cellElement = $(this.gameDiv).find(`.row-${i} .col-${j}`)[0];
+                let cellValue = this.game.state[i][j];
+                if (cellValue != 0) {
+                    $(cellElement).removeClass("blue-cell");
+                    $(cellElement).removeClass("red-cell");
+                    $(cellElement).removeClass("white-cell");
+
+                    if (cellValue == 1) {
+                        $(cellElement).addClass("blue-cell");
+                    } else if (cellValue == 2) {
+                        $(cellElement).addClass("red-cell");
+                    } else {
+                        $(cellElement).addClass("white-cell");
+                    }
+
+                    $($(cellElement).find(".cell-text")[0]).text(cellValue);
+                } else {
+                    $(cellElement).removeClass("blue-cell");
+                    $(cellElement).removeClass("red-cell");
+                    $(cellElement).removeClass("white-cell");
+                    $($(cellElement).find(".cell-text")[0]).text("");
+                }
+            }
+        }
     }
 }

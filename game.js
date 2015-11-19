@@ -1,7 +1,7 @@
 "use strict";
 
 class Game {
-    constructor() {
+    constructor(gameDiv) {
         this.next = this.getNext();
         this.state = this.getInitialState();
     }
@@ -61,8 +61,8 @@ class Game {
 
     getRandomTile() {
         return {
-            x: Math.floor(Math.random() * 3),
-            y: Math.floor(Math.random() * 3)
+            x: Math.floor(Math.random() * 4),
+            y: Math.floor(Math.random() * 4)
         };
     }
 

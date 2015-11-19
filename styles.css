@@ -4,9 +4,10 @@ COLORS
 BLACK - #222222
 GREY - #666666
 GREY-SHADOW - #444444
-PINK - #ff6680
-PINK SHADOW - 
-BLUE - #66ccff
+YELLOW SHADOW - #E0CD62
+RED - #FF6680
+RED SHADOW - #CA3F63
+BLUE - #66CCFF
 BLUE SHADOW - #3DADE4
 
 */
@@ -92,20 +93,35 @@ body {
 	height: 60px;
 	background-color: #D4E2D8;
 	border-bottom-left-radius: 10px;
-    border-bottom-right-radius: 10px;
+	border-bottom-right-radius: 10px;
 }
 
 .game-next-icon {
 	position: absolute;
-	width: 20px;
-	height: 25px;
-	top: 20px;
+	width: 25px;
+	height: 30px;
+	top: 15px;
 	left: 0;
 	right: 0;
 	margin: auto;
-	background-color: #66ccff;
+	background-color: #66CCFF;
 	box-shadow: 0px 5px 0px #3DADE4;
 	border-radius: 5px;
+}
+
+.next-icon-red {
+	background-color: #FF6680;
+	box-shadow: 0px 5px 0px #CA3F63;
+}
+
+.next-icon-blue {
+	background-color: #66CCFF;
+	box-shadow: 0px 5px 0px #3DADE4;
+}
+
+.next-icon-white {
+	background-color: #FFFFFF;
+	box-shadow: 0px 5px 0px #E0CD62;
 }
 
 .game-next-text {
@@ -115,12 +131,45 @@ body {
 }
 
 .cell {
+	position: relative;
 	margin: 5px;
 	float: left;
 	height: 80px;
 	width: 55px;
 	background-color: #C6CCD0;
 	border-radius: 5px;
+}
+
+.cell-text {
+	position: absolute;
+	font-size: 40px;
+	height: 50px;
+	width: 100%;
+	margin: auto;
+	top: 0;
+	bottom: 0;
+	text-align: center;
+}
+
+.blue-cell {
+	background-color: #66CCFF;
+	color: #FFFFFF;
+	border-radius: 5px;
+	box-shadow: 0px 5px 0px #3DADE4;
+}
+
+.red-cell {
+	background-color: #FF6680;
+	color: #FFFFFF;
+	border-radius: 5px;
+	box-shadow: 0px 5px 0px #CA3F63;
+}
+
+.white-cell {
+	background-color: #FFFFFF;
+	color: #222222;
+	border-radius: 5px;
+	box-shadow: 0px 5px 0px #E0CD62;
 }
 
 .header {
@@ -135,11 +184,11 @@ body {
 }
 
 .header-t {
-	color: #66ccff;
+	color: #66CCFF;
 }
 
 .header-h {
-	color: #ff6680;
+	color: #FF6680;
 }
 
 .threes-button {
@@ -209,4 +258,12 @@ body {
 
 .menu-button:hover {
 	top: 20px;
+}
+
+.clearfix:after {
+	content: " "; 
+	visibility: hidden;
+	display: block;
+	height: 0;
+	clear: both;
 }
