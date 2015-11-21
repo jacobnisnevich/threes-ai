@@ -8,15 +8,56 @@ class Solver {
     }
 
     solve() {
+        while (!isBoardFilled()) {
+            let possibleNextStates = getNextStates();
 
+            let maxScore = 0;
+            let maxState;
+
+            possibleNextStates.forEach(function(possibleNextState) {
+                let stateScore = this.scoreState(possibleNextState);
+
+                if (stateScore > maxScore) {
+                    maxScore = stateScore;
+                    maxState = possibleNextState;
+                }
+            });
+
+            this.game.state = maxState;
+            this.game.next = this.game.getNext();
+
+            this.renderState();
+        }
+
+        alert(this.scoreState(this.game.state));
     }
 
-    scoreState() {
+    isBoardFilled() {
+        let boardFilled = true;
+
+        for (let i = 0; i < 4; i++) {
+            for (let j = 0; j < 4; j++) {
+                if (this.game.state[i][j] != 0) {
+                    boardFilled = false;
+                }
+            }
+        }
+
+        return boardFilled;
+    }
+
+    getNextStates() {
+        let nextStates = [];
+
+        return nextStates;
+    }
+
+    scoreState(state) {
         let stateScore = 0;
 
         for (let i = 0; i < 4; i++) {
             for (let j = 0; j < 4; j++) {
-                let cellValue = this.game.state[i][j]
+                let cellValue = state[i][j]
                 if (cellValue >= 3) {
                     stateScore += Math.pow(SCORE_ORDER.indexOf(cellValue), 3)
                 }

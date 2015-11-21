@@ -38,6 +38,10 @@ class Game {
         return next;
     }
 
+    getLeftMoveState() {
+        
+    }
+
     getInitialState() {
         // 2D grid with 9 random tiles consisting of 0s, 1s, and 2s
         let state = [[0, 0, 0, 0],
