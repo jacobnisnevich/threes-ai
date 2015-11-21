@@ -7,11 +7,16 @@ $(document).ready(function() {
     $(".start-button").click(function() {
         $(".menu-screen").hide();
         $(".game-screen").show();
+        solver.solve();
     });
 
     $(".menu-button").click(function() {
         $(".game-screen").hide();
         $(".menu-screen").show();
+    });
+
+    $(".restart-button").click(function() {
+        solver.restart();
     });
 
     $(document).keydown(function(e) {

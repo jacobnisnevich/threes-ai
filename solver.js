@@ -18,15 +18,30 @@ class Solver {
         this.renderState();
     }
 
+    restart() {
+        this.game.state = this.game.getInitialState();
+        this.game.next = this.game.getNext();
+        this.renderState();
+
+        this.solve();
+    }
+
     solve() {
-        while (!isBoardFilled()) {
-            let possibleNextStates = getNextStates();
+        let self = this;
+
+        let interval = setInterval(function() {
+            let possibleNextStates = self.getNextStates();
+
+            if (possibleNextStates.length == 0) {
+                clearInterval(interval);
+                alert(self.scoreState(self.game.state));
+            }
 
             let maxScore = 0;
             let maxState;
 
             possibleNextStates.forEach(function(possibleNextState) {
-                let stateScore = this.scoreState(possibleNextState);
+                let stateScore = self.scoreState(possibleNextState);
 
                 if (stateScore > maxScore) {
                     maxScore = stateScore;
@@ -34,31 +49,26 @@ class Solver {
                 }
             });
 
-            this.game.state = maxState;
-            this.game.next = this.game.getNext();
+            self.game.state = maxState;
+            self.game.next = self.game.getNext();
 
-            this.renderState();
-        }
-
-        alert(this.scoreState(this.game.state));
-    }
-
-    isBoardFilled() {
-        let boardFilled = true;
-
-        for (let i = 0; i < 4; i++) {
-            for (let j = 0; j < 4; j++) {
-                if (this.game.state[i][j] != 0) {
-                    boardFilled = false;
-                }
-            }
-        }
-
-        return boardFilled;
+            self.renderState();
+        }, 1000);
     }
 
     getNextStates() {
         let nextStates = [];
+        let directions = ["right", "down", "left", "up"];
+
+        let self = this;
+
+        directions.forEach(function(direction) {
+            let move = self.game.getMove(direction);
+
+            if (move.canMove) {
+                nextStates.push(move.nextState);
+            }
+        });
 
         return nextStates;
     }
