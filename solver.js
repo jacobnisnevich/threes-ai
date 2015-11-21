@@ -7,6 +7,17 @@ class Solver {
         this.renderState();
     }
 
+    move(direction) {
+        let move = this.game.getMove(direction);
+
+        if (move.canMove) {
+            this.game.state = move.nextState;
+            this.game.next = this.game.getNext();
+        }
+
+        this.renderState();
+    }
+
     solve() {
         while (!isBoardFilled()) {
             let possibleNextStates = getNextStates();
