@@ -7,7 +7,7 @@ $(document).ready(function() {
     $(".start-button").click(function() {
         $(".menu-screen").hide();
         $(".game-screen").show();
-        solver.solve();
+        // solver.solve();
     });
 
     $(".menu-button").click(function() {
