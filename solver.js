@@ -40,19 +40,20 @@ class Solver {
             let maxScore = 0;
             let maxState;
 
-            possibleNextStates.forEach(function(possibleNextState) {
+            possibleNextStates.forEach(function(possibleNextState, index, array) {
                 let stateScore = self.scoreState(possibleNextState);
 
                 if (stateScore > maxScore) {
                     maxScore = stateScore;
                     maxState = possibleNextState;
                 }
+
+                if (index == array.length - 1) {                
+                    self.game.state = maxState;
+                    self.game.next = self.game.getNext();
+                    self.renderState();
+                }
             });
-
-            self.game.state = maxState;
-            self.game.next = self.game.getNext();
-
-            self.renderState();
         }, 1000);
     }
 
